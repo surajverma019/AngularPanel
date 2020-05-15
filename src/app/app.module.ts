@@ -1,18 +1,49 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MAT_FORM_FIELD_DEFAULT_OPTIONS } from '@angular/material/form-field';
+
+import { rootRouterConfig } from './app.routing';
+import { SharedModule } from './shared/shared.module';
+import { HomeComponent } from './views/home/home.component';
+import { RouterModule } from '@angular/router';
+
+import { HttpClient, HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { TokenInterceptor } from './shared/interceptors/token.interceptor';
+import { ServiceWorkerModule } from '@angular/service-worker';
+import { environment } from '../environments/environment';
 
 @NgModule({
-  declarations: [
-    AppComponent
-  ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule
-  ],
-  providers: [],
-  bootstrap: [AppComponent]
+   declarations: [
+      AppComponent,
+      HomeComponent
+   ],
+   imports: [
+      BrowserModule,
+      AppRoutingModule,
+      BrowserAnimationsModule,
+      SharedModule,
+      HttpClientModule,
+      RouterModule.forRoot(rootRouterConfig, { useHash: false }),
+      ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
+   ],
+   providers: [
+      { provide: MAT_FORM_FIELD_DEFAULT_OPTIONS, useValue: { appearance: 'fill' } },
+      
+      // REQUIRED IF YOU USE JWT AUTHENTICATION
+      {
+         provide: HTTP_INTERCEPTORS,
+         useClass: TokenInterceptor,
+         multi: true,
+      },
+   ],
+   bootstrap: [
+      AppComponent
+   ],
+
+   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class AppModule { }
