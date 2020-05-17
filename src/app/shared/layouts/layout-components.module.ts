@@ -14,6 +14,8 @@ import { TopNavComponent } from './top-nav/top-nav.component';
 
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 
+import { DirectivesModule } from '../directives/directives.module';
+
 
 const components = [
   AuthLayoutComponent,
@@ -29,7 +31,8 @@ const components = [
     RouterModule,
     FlexLayoutModule,
     SharedMaterialModule,
-    BsDropdownModule.forRoot()
+    BsDropdownModule.forRoot(),
+    DirectivesModule,
   ],
   declarations: components,
   entryComponents: [

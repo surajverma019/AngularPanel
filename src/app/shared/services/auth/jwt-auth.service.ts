@@ -10,7 +10,7 @@ import { JwtHelperService } from '@auth0/angular-jwt';
 
 // ================= only for demo purpose ===========
 const DEMO_TOKEN =
-  "eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJuYW1laWQiOiIxMSIsInVuaXF1ZV9uYW1lIjoiQWRtaW4iLCJyb2xlIjpbIkFkbWluIiwiTW9kZXJhdG9yIl0sIm5iZiI6MTU4OTYzNTMwOSwiZXhwIjoxNTg5NzIxNzA5LCJpYXQiOjE1ODk2MzUzMDl9.S8aLjjJW8nBNO8ch-PDZp3nYms70HNTeJFmfxVkT69RBp5fo8VXu5o4MKsRdbzmbYSToONZdvGylf79S8VVUmw";
+  "eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJuYW1laWQiOiIxMSIsInVuaXF1ZV9uYW1lIjoiQWRtaW4iLCJyb2xlIjpbIkFkbWluIiwiTW9kZXJhdG9yIl0sIm5iZiI6MTU4OTcyMjIxOSwiZXhwIjoxNTg5ODA4NjE5LCJpYXQiOjE1ODk3MjIyMTl9.EjsNax9pa87RimviuRJAURdXuJUg58YpWVvTOQZUCZRSjfMIru52boTyWjiJunKRfEF5Fhs29iYOxyPk2A7ciQ";
 
 const DEMO_USER: User = {
   id: "4sa00c45639d2c0c54b354ba",

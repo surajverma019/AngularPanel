@@ -6,6 +6,7 @@ import { LoginComponent } from './login/login.component';
 import { SessionsRoutes } from "./sessions.routing";
 import { RouterModule } from '@angular/router';
 import { CustomControleModule } from 'src/app/shared/custom-controle/custom-controle.module';
+import { RoleChangerComponent } from './role-changer/role-changer.component';
 
 @NgModule({
   imports: [
@@ -16,6 +17,7 @@ import { CustomControleModule } from 'src/app/shared/custom-controle/custom-cont
     CustomControleModule,
     RouterModule.forChild(SessionsRoutes),
   ],
-  declarations: [LoginComponent]
+  declarations: [LoginComponent,
+    RoleChangerComponent]
 })
 export class SessionsModule { }

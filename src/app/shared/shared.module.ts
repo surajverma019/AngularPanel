@@ -8,6 +8,7 @@ import { CustomControleModule } from './custom-controle/custom-controle.module';
 import { MeetingResolver } from './resolvers/meeting.resolver';
 import { MeetingService } from './services/meeting.service';
 import { DirectivesModule } from './directives/directives.module';
+import { UserRoleGuard } from './guards/user-role.guard';
 
 
 @NgModule({
@@ -19,12 +20,14 @@ import { DirectivesModule } from './directives/directives.module';
   ],
   providers: [
     AuthGuard,
+    UserRoleGuard,
     MeetingResolver,
     MeetingService
 
   ],
   exports: [
-    CustomControleModule
+    CustomControleModule,
+    DirectivesModule
   ]
 })
 export class SharedModule { }
