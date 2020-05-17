@@ -6,15 +6,17 @@ import { map, catchError, delay } from "rxjs/operators";
 import { User } from "../../models/user.model";
 import { of, BehaviorSubject, throwError } from "rxjs";
 import { environment } from "../../../../environments/environment";
+import { JwtHelperService } from '@auth0/angular-jwt';
 
 // ================= only for demo purpose ===========
 const DEMO_TOKEN =
-  "eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJuYW1laWQiOiIxMSIsInVuaXF1ZV9uYW1lIjoiQWRtaW4iLCJyb2xlIjpbIkFkbWluIiwiTW9kZXJhdG9yIl0sIm5iZiI6MTU4OTU0NjY4NSwiZXhwIjoxNTg5NjMzMDg1LCJpYXQiOjE1ODk1NDY2ODV9.9sTq9oUILOUe8UFOnV_64moC83ZNOgeswEAX87xAehPciV5F_HUxePEzeCxZMt_RJDvyOKqCHU3RMHGF1j-R6A";
+  "eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJuYW1laWQiOiIxMSIsInVuaXF1ZV9uYW1lIjoiQWRtaW4iLCJyb2xlIjpbIkFkbWluIiwiTW9kZXJhdG9yIl0sIm5iZiI6MTU4OTYzNTMwOSwiZXhwIjoxNTg5NzIxNzA5LCJpYXQiOjE1ODk2MzUzMDl9.S8aLjjJW8nBNO8ch-PDZp3nYms70HNTeJFmfxVkT69RBp5fo8VXu5o4MKsRdbzmbYSToONZdvGylf79S8VVUmw";
 
 const DEMO_USER: User = {
   id: "4sa00c45639d2c0c54b354ba",
   displayName: "John Doe",
-  role: "SA",
+  roles: ["SA", "RM", "SRM"],
+  role: "RM",
 };
 // ================= you will get those data from server =======
 
@@ -27,6 +29,12 @@ export class JwtAuthService {
   isAuthenticated: Boolean;
   user: User;
   user$ = (new BehaviorSubject<User>(this.user));
+  //role$ = new BehaviorSubject<string>("");
+  readonly currentUser = this.user$.asObservable();
+  //readonly currentRole = this.role$.asObservable();
+
+
+  jwtHelper = new JwtHelperService();
   signingIn: Boolean;
   JWT_TOKEN = "JWT_TOKEN";
   APP_USER = "APP_USER";
@@ -35,10 +43,37 @@ export class JwtAuthService {
     private ls: LocalStoreService,
     private http: HttpClient,
     private router: Router
-  ) {}
+  ) {
 
-  public signin(signInModel : any) {
-    return of({token: DEMO_TOKEN, user: DEMO_USER})
+  }
+  setUserState(user): void {
+    this.user$.next(user);
+  }
+
+  getUserState(): User {
+    let user: User;
+    this.currentUser.subscribe(currentUser => user = currentUser);
+    console.log('user bs obj');
+    console.log(user);
+    if (!user) {
+      console.log('user has refreshed the page');
+      user = this.getUser();
+      this.setUserState(user);
+
+    }
+    return user;
+  }
+
+  // setRoleState(role): void {
+  //   this.role$.next(role);
+  // }
+
+  // getRoleState(): string {
+  //   return this.role$.value;
+  // }
+
+  public signin(signInModel: any) {
+    return of({ token: DEMO_TOKEN, user: DEMO_USER })
       .pipe(
         delay(2000),
         map((res: any) => {
@@ -83,7 +118,7 @@ export class JwtAuthService {
           return of(error);
         })
       );
-    
+
     /*
       The following code get user data and jwt token is assigned to
       Request header using token.interceptor
@@ -108,10 +143,15 @@ export class JwtAuthService {
   }
 
   isLoggedIn(): Boolean {
-    return !!this.getJwtToken();
+    const jwtToken = this.getJwtToken();
+    //const expirationDate = this.jwtHelper.getTokenExpirationDate(jwtToken);
+    //console.log(expirationDate);
+    //console.log(jwtToken);
+    //console.log(!this.jwtHelper.isTokenExpired(jwtToken));
+    return !this.jwtHelper.isTokenExpired(jwtToken);
   }
 
-  
+
   getJwtToken() {
     return this.ls.getItem(this.JWT_TOKEN);
   }
@@ -123,8 +163,20 @@ export class JwtAuthService {
     this.isAuthenticated = isAuthenticated;
     this.token = token;
     this.user = user;
-    this.user$.next(user);
+    this.setUserState(user);
     this.ls.setItem(this.JWT_TOKEN, token);
     this.ls.setItem(this.APP_USER, user);
+  }
+
+  roleMatch(allowedRoles): boolean {
+    let isMatch = false;
+    const userRoles = this.user.role;
+    allowedRoles.forEach(element => {
+      if (userRoles.includes(element)) {
+        isMatch = true;
+        return;
+      }
+    });
+    return isMatch;
   }
 }

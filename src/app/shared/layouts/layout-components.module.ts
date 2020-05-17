@@ -12,6 +12,7 @@ import { TopNavComponent } from './top-nav/top-nav.component';
 
 // ONLY REQUIRED FOR **SIDE** NAVIGATION LAYOUT
 
+import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 
 
 const components = [
@@ -28,6 +29,7 @@ const components = [
     RouterModule,
     FlexLayoutModule,
     SharedMaterialModule,
+    BsDropdownModule.forRoot()
   ],
   declarations: components,
   entryComponents: [

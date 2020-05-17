@@ -7,13 +7,15 @@ import { LayoutComponentsModule } from './layouts/layout-components.module';
 import { CustomControleModule } from './custom-controle/custom-controle.module';
 import { MeetingResolver } from './resolvers/meeting.resolver';
 import { MeetingService } from './services/meeting.service';
+import { DirectivesModule } from './directives/directives.module';
 
 
 @NgModule({
   imports: [
     CommonModule,
     LayoutComponentsModule,
-    CustomControleModule
+    CustomControleModule,
+    DirectivesModule
   ],
   providers: [
     AuthGuard,

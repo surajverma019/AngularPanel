@@ -29,7 +29,7 @@ export class SideNavComponent implements OnInit {
   displayMode = 'flat';
   // overlap = false;
 
-  isLoggedIn$: Observable<boolean>;
+  //isLoggedIn$: Observable<boolean>;
 
   watcher: Subscription;
 

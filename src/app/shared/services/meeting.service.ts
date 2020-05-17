@@ -6,11 +6,12 @@ import { HttpClient } from '@angular/common/http';
 })
 export class MeetingService {
 
+  results: any;
   baseUrl = 'http://localhost:5000/api/users?likees=true';
 
   constructor(private http: HttpClient) { }
 
-  getDetails() {
+  getDetails(): any {
     return this.http.get<any>(this.baseUrl);
   }
 

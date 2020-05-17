@@ -32,8 +32,19 @@
     </mat-menu>
   </span>
 
-  
+
   <span class="spacer"></span>
+  <button mat-button [matMenuTriggerFor]="rolePicker">
+    {{role}}
+    <mat-icon>arrow_drop_down</mat-icon>
+  </button>
+  <mat-menu #rolePicker="matMenu">
+    <button mat-menu-item *ngFor="let role of roles"
+            (click)="onRoleChanged(role)">
+      {{role}}
+    </button>
+  </mat-menu>
+  
   <button mat-button [matMenuTriggerFor]="menu" class="d-none d-md-none d-lg-block d-xl-block">
     <mat-icon>account_circle</mat-icon>
     <span class="ml-2">Account</span>

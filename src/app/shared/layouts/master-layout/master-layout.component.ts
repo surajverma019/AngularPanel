@@ -70,11 +70,13 @@ export class MasterLayoutComponent implements OnInit {
         this.over = 'side';
       }
     });
-    this.user = jwtAuthService.getUser();
+    this.user = jwtAuthService.getUserState();
 
   }
 
   ngOnInit() {
+    console.log('-------------------------');
+    console.log(this.user);
   }
 
 }

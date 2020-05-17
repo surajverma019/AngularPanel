@@ -10,7 +10,7 @@ import { FormControl } from '@angular/forms';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-  model: any = {};
+  model: any = { username: "123123", password: "password" };
   loading: Boolean;
 
   @ViewChild('loginForm') formRef: FormControl;
@@ -20,8 +20,8 @@ export class LoginComponent implements OnInit {
     private location: Location) { }
 
   ngOnInit() {
-    if (this.jwtAuthService.isLoggedIn())
-      this.router.navigateByUrl('/');
+   // if (this.jwtAuthService.isLoggedIn())
+      //this.router.navigateByUrl('/');
   }
 
   signin() {

@@ -4,6 +4,7 @@ import { AuthGuard } from "./shared/guards/auth.guard";
 
 import { AuthLayoutComponent } from './shared/layouts/auth-layout/auth-layout.component';
 import { MasterLayoutComponent } from './shared/layouts/master-layout/master-layout.component';
+import { MasterResolver } from './shared/resolvers/master.resolver';
 
 export const rootRouterConfig: Routes = [
   {
@@ -28,6 +29,8 @@ export const rootRouterConfig: Routes = [
   {
     path: "",
     component: MasterLayoutComponent,
+    //resolve: { user: MasterResolver } ,
+    runGuardsAndResolvers: 'always',
     canActivate: [AuthGuard],
     children: [
       {
