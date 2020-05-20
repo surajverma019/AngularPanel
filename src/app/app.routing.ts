@@ -4,7 +4,6 @@ import { AuthGuard } from "./shared/guards/auth.guard";
 
 import { AuthLayoutComponent } from './shared/layouts/auth-layout/auth-layout.component';
 import { MasterLayoutComponent } from './shared/layouts/master-layout/master-layout.component';
-import { MasterResolver } from './shared/resolvers/master.resolver';
 import { UserRoleGuard } from './shared/guards/user-role.guard';
 
 export const rootRouterConfig: Routes = [

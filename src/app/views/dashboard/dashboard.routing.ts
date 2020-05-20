@@ -1,4 +1,4 @@
-import { Routes, RouterModule } from '@angular/router';
+import { Routes, RouterModule, RunGuardsAndResolvers } from '@angular/router';
 import { DashboardComponent } from './dashboard.component';
 import { ShowMeetingComponent } from './show-meeting/show-meeting.component';
 import { MeetingResolver } from 'src/app/shared/resolvers/meeting.resolver';
@@ -13,13 +13,12 @@ const routes: Routes = [
 export const DashboardRoutes = [
   {
     path: "",
-    // canActivate: [UserRoleGuard], 
-    // runGuardsAndResolvers: 'always',
+    canActivate: [UserRoleGuard],
+    runGuardsAndResolvers: "always" as RunGuardsAndResolvers,
     children: [
       {
         path: "home",
         component: DashboardComponent,
-        data: { roles: ['RM', 'SRM', 'SA'] },
       },
       {
         path: "meeting",
@@ -28,7 +27,8 @@ export const DashboardRoutes = [
       },
       {
         path: "form",
-        component: FormComponent
+        component: FormComponent,
+        data: { roles: ['RM', 'SRM'] },
       },
     ],
   },

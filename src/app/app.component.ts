@@ -15,14 +15,11 @@ export class AppComponent implements OnInit {
     const token = this.jwtAuthService.getJwtToken();
     const user = this.jwtAuthService.getUser();
     
-    if (token) {
+    if (token && user) {
       this.jwtAuthService.token = token;
-    }
 
-    if (user) {
       this.jwtAuthService.user = user;
-      this.jwtAuthService.setUserState(user);                                                                   
-
+      this.jwtAuthService.setUserState(user);       
     }
   }
 }

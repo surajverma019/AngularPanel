@@ -43,7 +43,7 @@ export class TopNavComponent implements OnInit {
       this.jwtAuth.setUserState(this.user);
       this.jwtAuth.user = this.user;
       this.jwtAuth.setUserAndToken(this.jwtAuth.getJwtToken(), this.user, true);
-      this.router.navigateByUrl('/sessions/login');
+      location.reload();
     }
   }
 

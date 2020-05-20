@@ -13,8 +13,7 @@ import { RouterModule } from '@angular/router';
 
 import { HttpClient, HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { TokenInterceptor } from './shared/interceptors/token.interceptor';
-import { ServiceWorkerModule } from '@angular/service-worker';
-import { environment } from '../environments/environment';
+import { environment } from '../environments/environment'; 
 
 
 @NgModule({
@@ -28,9 +27,7 @@ import { environment } from '../environments/environment';
       BrowserAnimationsModule,
       SharedModule,
       HttpClientModule,
-      RouterModule.forRoot(rootRouterConfig, { useHash: false }),
-
-      ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
+      RouterModule.forRoot(rootRouterConfig, { useHash: false })
    ],
    providers: [
       { provide: MAT_FORM_FIELD_DEFAULT_OPTIONS, useValue: { appearance: 'fill' } },

@@ -104,3 +104,10 @@ input[type=number] {
     border-top-color: #000000;
     animation: spinner .8s linear infinite;
   }
+
+  .bottomright {
+    position: absolute;
+    bottom: 8px;
+    right: 16px;
+    font-size: 15px;
+  }

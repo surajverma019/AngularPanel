@@ -17,18 +17,15 @@ export class UserRoleGuard implements CanActivate {
     canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
         var user = this.jwtAuth.getUser();
         const roles = route.firstChild.data['roles'] as Array<string>
-   
         console.log('UserGuard');
-        console.log(roles);
         if (roles) {
-            console.log(this.jwtAuth);
             const match = this.jwtAuth.roleMatch(roles);
             if (match) {// this indicate that match is null
                 return true
             }
             else {
-                this.router.navigate(['/sessions/login']);
-                this.snack.open('You are not allowed to access this area !');
+                this.snack.open('You do not have access to this page!', 'OK');
+                return false;
             }
         }
         return true;

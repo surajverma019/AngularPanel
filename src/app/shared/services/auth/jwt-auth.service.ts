@@ -10,7 +10,7 @@ import { JwtHelperService } from '@auth0/angular-jwt';
 
 // ================= only for demo purpose ===========
 const DEMO_TOKEN =
-  "eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJuYW1laWQiOiIxMSIsInVuaXF1ZV9uYW1lIjoiQWRtaW4iLCJyb2xlIjpbIkFkbWluIiwiTW9kZXJhdG9yIl0sIm5iZiI6MTU4OTcyMjIxOSwiZXhwIjoxNTg5ODA4NjE5LCJpYXQiOjE1ODk3MjIyMTl9.EjsNax9pa87RimviuRJAURdXuJUg58YpWVvTOQZUCZRSjfMIru52boTyWjiJunKRfEF5Fhs29iYOxyPk2A7ciQ";
+  "eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJuYW1laWQiOiIxMSIsInVuaXF1ZV9uYW1lIjoiQWRtaW4iLCJyb2xlIjpbIkFkbWluIiwiTW9kZXJhdG9yIl0sIm5iZiI6MTU4OTkwMjAwMywiZXhwIjoxNTg5OTg4NDAzLCJpYXQiOjE1ODk5MDIwMDN9.KKF0LXBZxnBaS40VoHNut_r-dgD8fHenmKaKpN-FeBfSE7hFKWk9n2iHC4kIguX906ykKiPvEO62TnCkNei1tA";
 
 const DEMO_USER: User = {
   id: "4sa00c45639d2c0c54b354ba",
@@ -63,15 +63,7 @@ export class JwtAuthService {
     }
     return user;
   }
-
-  // setRoleState(role): void {
-  //   this.role$.next(role);
-  // }
-
-  // getRoleState(): string {
-  //   return this.role$.value;
-  // }
-
+  
   public signin(signInModel: any) {
     return of({ token: DEMO_TOKEN, user: DEMO_USER })
       .pipe(
