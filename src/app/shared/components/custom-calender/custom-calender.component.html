@@ -1,0 +1,13 @@
+<div class='app-calendar' *ngIf="calendarVisible">
+    <full-calendar
+      *ngIf="calendarOptions"
+        #fullcalendar
+        [editable]="true"
+        [header]="calendarOptions.headerToolbar"
+        (dateClick)="dateClick($event)"
+        [plugins]="calendarOptions.plugins"
+        (eventDragStop)="eventDragStop($event)"
+        (eventClick)="eventClick($event.event)" 
+        [events]="calendarEvents"
+    ></full-calendar>
+  </div>

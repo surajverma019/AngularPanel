@@ -9,6 +9,7 @@ import { MeetingResolver } from './resolvers/meeting.resolver';
 import { MeetingService } from './services/meeting.service';
 import { DirectivesModule } from './directives/directives.module';
 import { UserRoleGuard } from './guards/user-role.guard';
+import { PreventUserUnSavedChanges } from './guards/prevent-user-unsaved-changes.guard';
 
 
 @NgModule({
@@ -21,6 +22,7 @@ import { UserRoleGuard } from './guards/user-role.guard';
   providers: [
     AuthGuard,
     UserRoleGuard,
+    PreventUserUnSavedChanges,
     MeetingResolver,
     MeetingService
 
