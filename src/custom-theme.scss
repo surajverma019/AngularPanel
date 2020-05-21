@@ -31,3 +31,12 @@ $candy-app-theme: mat-light-theme($candy-app-primary, $candy-app-accent, $candy-
 // Alternatively, you can import and @include the theme mixins for each component
 // that you are using.
 @include angular-material-theme($candy-app-theme);
+
+
+
+// This is bootstrap theming
+$theme-colors: (
+  "primary":mat-color($candy-app-primary),
+  "danger": #ff4136
+);
+@import '../node_modules/bootstrap/scss/bootstrap';

@@ -21,7 +21,7 @@ export class CustomCalenderComponent implements OnInit {
 
   calendarVisible = true;
   calendarOptions = {
-    plugins: [dayGridPlugin, timeGridPlugin, listPlugin, interactionPlugin, bootstrapPlugin ],
+    plugins: [dayGridPlugin, timeGridPlugin, listPlugin, interactionPlugin, bootstrapPlugin],
     headerToolbar: {
       left: 'prev,next today',
       center: 'title',
@@ -34,7 +34,7 @@ export class CustomCalenderComponent implements OnInit {
     //   { id: 1, title: 'event 1', date: '2020-05-01', textColor: 'white', backgroundColor: '#EC6B4E' },
     //   { id: 2, title: 'event 2', date: '2020-05-02', textColor: 'white', backgroundColor: '#EC6B4E' }
     // ],
-    themeSystem: 'bootstrap' // default view, may be bootstrap
+    theme: 'bootstrap' // default view, may be bootstrap
 
   };
 
@@ -82,8 +82,8 @@ export class CustomCalenderComponent implements OnInit {
 
   callBackend(start, end) {
     return [
-      { id: 1, title: 'event 1', date: '2020-05-01', textColor: 'white', backgroundColor: '#EC6B4E' },
-      { id: 2, title: 'event 2', date: '2020-05-02', textColor: 'white', backgroundColor: '#EC6B4E' }
+      { id: 1, title: 'event 1', date: '2020-05-01' },
+      { id: 2, title: 'event 2', date: '2020-05-02' }
     ];
   }
 
@@ -91,7 +91,7 @@ export class CustomCalenderComponent implements OnInit {
 
   ngOnInit() {
     console.log('Cal Events');
- 
+
 
     if (window.innerWidth <= 768) {
       this.calendarOptions.headerToolbar = {
@@ -101,5 +101,4 @@ export class CustomCalenderComponent implements OnInit {
       }
     }
   }
-
 }
