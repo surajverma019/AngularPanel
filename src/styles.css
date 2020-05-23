@@ -1449,5 +1449,33 @@ a.text-dark:hover, a.text-dark:focus {
     /* Never get larger than this */
     font-size: 15px !important;
   }
+  /* width */
+  ::-webkit-scrollbar {
+    width: 6px;
+  }
+  /* Track */
+  ::-webkit-scrollbar-track {
+    background: #f1f1f1;
+  }
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: #888;
+  }
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: #555;
+  }
 }
 
+.mat-progress-bar.mat-accent .mat-progress-bar-buffer {
+  background-color: white;
+}
+
+.add-meeting {
+  font-size: 1.4em !important;
+  margin-left: 5px !important;
+}
+
+.mat-drawer-inner-container {
+  overflow: initial !important;
+}

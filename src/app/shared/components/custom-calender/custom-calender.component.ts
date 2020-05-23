@@ -42,9 +42,6 @@ export class CustomCalenderComponent implements OnInit {
     customButtons: {
       myCustomButton: {
         text: '+',
-        icon: "fa fa fa-user",
-        themeIcon: "fa fa fa-user",
-        bootstrapGlyphicon: "fa fa fa-user",
         click: function () {
           alert('clicked the custom button!');
         }
@@ -145,6 +142,7 @@ export class CustomCalenderComponent implements OnInit {
         button.textContent = '';
         button.classList.add('fa');
         button.classList.add('fa-plus');
+        button.classList.add('add-meeting');
       }
 
     });

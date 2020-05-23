@@ -10,7 +10,7 @@ import { Event, Router, NavigationStart, NavigationEnd, NavigationCancel, Naviga
 @Component({
   selector: 'app-master-layout',
   templateUrl: './master-layout.component.html',
-  styleUrls: ['./master-layout.component.css']
+  styleUrls: ['./master-layout.component.scss']
 })
 export class MasterLayoutComponent implements OnInit {
 
