@@ -1,5 +1,9 @@
-<div class='app-calendar' *ngIf="calendarVisible">
-    <full-calendar
+
+<div class="meeting-container" style="background: #f5f6f8;">
+
+  <div class="demos__main">
+    <div class='app-calendar' *ngIf="calendarVisible">
+      <full-calendar
       *ngIf="calendarOptions"
         #fullcalendar
         [editable]="true"
@@ -7,8 +11,16 @@
         (dateClick)="dateClick($event)"
         [plugins]="calendarOptions.plugins"
         (eventDragStop)="eventDragStop($event)"
+        (eventRender)="eventRender($event)"
+        [customButtons]="calendarOptions.customButtons"
         (eventClick)="eventClick($event.event)" 
+        (datesRender)="datesRender($event)"
         [events]="calendarEvents"
         [themeSystem]="calendarOptions.theme"
-    ></full-calendar>
+        [defaultView]="calendarOptions.defaultView"
+        [views]="calendarOptions.views">
+      </full-calendar>
+    </div>
   </div>
+</div>
+

@@ -13,7 +13,8 @@ import { RouterModule } from '@angular/router';
 
 import { HttpClient, HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { TokenInterceptor } from './shared/interceptors/token.interceptor';
-import { environment } from '../environments/environment'; 
+import { environment } from '../environments/environment';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome'; 
 
 
 @NgModule({
@@ -27,7 +28,8 @@ import { environment } from '../environments/environment';
       BrowserAnimationsModule,
       SharedModule,
       HttpClientModule,
-      RouterModule.forRoot(rootRouterConfig, { useHash: false })
+      RouterModule.forRoot(rootRouterConfig, { useHash: false }),
+      FontAwesomeModule
    ],
    providers: [
       { provide: MAT_FORM_FIELD_DEFAULT_OPTIONS, useValue: { appearance: 'fill' } },

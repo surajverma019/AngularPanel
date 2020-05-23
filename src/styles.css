@@ -1,12 +1,11 @@
-
 /* @import '../node_modules/bootstrap/dist/css/bootstrap.min.css'; */
 
 @import '../node_modules/@fullcalendar/core/main.css';
+@import '../node_modules/@fullcalendar/list/main.css';
 @import '../node_modules/@fullcalendar/daygrid/main.css';
 @import '../node_modules/@fullcalendar/bootstrap/main.css';
-
+@import '../node_modules/@fullcalendar/timegrid/main.css';
 @import '../node_modules/font-awesome/css/font-awesome.min.css';
-
 .m-0 {
   margin: 0 !important;
 }
@@ -1378,8 +1377,77 @@ a.text-dark:hover, a.text-dark:focus {
   width: 100%;
 }
 
-
 /* .test {
   background: #1abc9c;
   color: blue;
 } */
+
+/* Extra small devices (portrait phones, less than 576px) */
+
+@media (max-width: 575.98px) {
+  body {
+    /* Never get larger than this */
+    font-size: 13px !important;
+  }
+  .fc-scroller {
+    height: 450px !important;
+  }
+  .fc-toolbar {
+    font-size: 12px;
+  }
+  .fc-toolbar button {
+    font-size: 13.5px;
+  }
+  .demos__main {
+    padding: 2px;
+    margin: 0 !important;
+  }
+}
+
+/* Small devices (landscape phones, 576px and up) */
+
+@media (min-width: 576px) and (max-width: 767.98px) {
+  body {
+    /* Never get larger than this */
+    font-size: 13px !important;
+  }
+  .fc-scroller {
+    height: 450px !important;
+  }
+  .demos__main {
+    padding: 2px;
+    margin: 0 !important;
+  }
+}
+
+/* Medium devices (tablets, 768px and up) */
+
+@media (min-width: 768px) and (max-width: 991.98px) {
+  body {
+    /* Never get larger than this */
+    font-size: 14px !important;
+  }
+  .demos__main {
+    padding: 15px;
+    margin: 5px !important;
+  }
+}
+
+/* Large devices (desktops, 992px and up) */
+
+@media (min-width: 992px) and (max-width: 1199.98px) {
+  body {
+    /* Never get larger than this */
+    font-size: 15px !important;
+  }
+}
+
+/* Extra large devices (large desktops, 1200px and up) */
+
+@media (min-width: 1200px) {
+  body {
+    /* Never get larger than this */
+    font-size: 15px !important;
+  }
+}
+

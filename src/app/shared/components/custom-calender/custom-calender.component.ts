@@ -9,10 +9,22 @@ import interactionPlugin from '@fullcalendar/interaction';
 import bootstrapPlugin from '@fullcalendar/bootstrap';
 
 
+// import interactionPlugin, {
+//     ThirdPartyDraggable
+// } from "@fullcalendar/interaction";
+// import commonPlugin from "@fullcalendar/resource-common";
+// import timegridPlugin from "@fullcalendar/resource-timegrid";
+// import dayGridResourcePlugin from "@fullcalendar/resource-daygrid";
+// import timelinePlugin from "@fullcalendar/resource-timeline";
+// import rrulePlugin from "@fullcalendar/rrule";
+// import momentPlugin from "@fullcalendar/moment";
+// import timezonePlugin from "@fullcalendar/moment-timezone";
+//import googlePlugin from "@fullcalendar/google-calendar";
+
 @Component({
   selector: 'app-custom-calender',
   templateUrl: './custom-calender.component.html',
-  styleUrls: ['./custom-calender.component.css']
+  styleUrls: ['./custom-calender.component.scss']
 })
 export class CustomCalenderComponent implements OnInit {
   @Input() events: any;
@@ -21,13 +33,44 @@ export class CustomCalenderComponent implements OnInit {
 
   calendarVisible = true;
   calendarOptions = {
-    plugins: [dayGridPlugin, timeGridPlugin, listPlugin, interactionPlugin, bootstrapPlugin],
+    plugins: [dayGridPlugin,
+      timeGridPlugin,
+      listPlugin,
+      interactionPlugin,
+      bootstrapPlugin,
+    ],
+    customButtons: {
+      myCustomButton: {
+        text: '+',
+        icon: "fa fa fa-user",
+        themeIcon: "fa fa fa-user",
+        bootstrapGlyphicon: "fa fa fa-user",
+        click: function () {
+          alert('clicked the custom button!');
+        }
+      }
+    },
+    viewRender: function (view) {
+
+    },
+    views: {
+      dayGridMonth: { // name of view
+        titleFormat: {
+          year: 'numeric', month: 'long',
+        }
+      },
+      listMonth: { // name of view
+        titleFormat: {
+          year: 'numeric', month: 'short',
+        }
+      },
+    },
     headerToolbar: {
       left: 'prev,next today',
       center: 'title',
       right: 'dayGridMonth,timeGridWeek,timeGridDay'
     },
-    initialView: 'dayGridMonth',
+    defaultView: 'dayGridMonth',
     weekends: true,
     editable: true,
     // events: [
@@ -53,6 +96,7 @@ export class CustomCalenderComponent implements OnInit {
   }
 
   eventClick(model) {
+    alert(model.title + ' Clicked !');
     console.log(model);
   }
 
@@ -73,6 +117,39 @@ export class CustomCalenderComponent implements OnInit {
     }
   }
 
+  eventRender(info) {
+    // console.log('info');
+    // console.log(info.view.type);
+    if (info.view.type === 'listMonth') {
+
+      //console.log(info);
+      var dotEl = info.el.getElementsByClassName('fc-list-item-title')[0];
+      //console.log(dotEl.innerText);
+      // // Change background color of row
+      // info.el.style.backgroundColor = 'red';
+
+      // // Change color of dot marker
+      // var dotEl = info.el.getElementsByClassName('fc-event-dot')[0];
+      // if (dotEl) {
+      //   dotEl.style.backgroundColor = 'white';
+      // }
+    }
+
+  }
+
+  datesRender(info) {
+
+    document.querySelectorAll('.fc-myCustomButton-button').forEach((button) => {
+
+      if (button.textContent === '+') {
+        button.textContent = '';
+        button.classList.add('fa');
+        button.classList.add('fa-plus');
+      }
+
+    });
+  }
+
   calendarEvents = (dates, callback) => {
     console.log('Fetch events for dates:', dates.start, dates.end);
 
@@ -81,10 +158,17 @@ export class CustomCalenderComponent implements OnInit {
   };
 
   callBackend(start, end) {
-    return [
-      { id: 1, title: 'event 1', date: '2020-05-01' },
-      { id: 2, title: 'event 2', date: '2020-05-02' }
-    ];
+
+    return [{ "title": "All Day Event", "start": "2020-05-01" },
+    { "title": "Long Event", "start": "2020-05-07", "end": "2020-05-10" },
+    { "groupId": "999", "title": "Repeating Event", "start": "2020-05-09T16:00:00+00:00" },
+    { "groupId": "999", "title": "Repeating Event", "start": "2020-05-16T16:00:00+00:00" },
+    { "title": "Conference", "start": "2020-05-21", "end": "2020-05-23" },
+    { "title": "Meeting", "start": "2020-05-22T10:30:00+00:00", "end": "2020-05-22T12:30:00+00:00" },
+    { "title": "Lunch", "start": "2020-05-22T12:00:00+00:00" },
+    { "title": "Birthday Party", "start": "2020-05-23T07:00:00+00:00" },
+    { "url": "http:\/\/google.com\/", "title": "Click for Google", "start": "2020-05-28" }
+    ]
   }
 
   constructor() { }
@@ -97,8 +181,18 @@ export class CustomCalenderComponent implements OnInit {
       this.calendarOptions.headerToolbar = {
         left: 'prev,next',
         center: 'title',
-        right: 'today'
-      }
+        right: 'today myCustomButton'
+      };
+
+      this.calendarOptions.defaultView = 'listMonth';
+
+      // this.calendarOptions.views = {
+      //   dayGridMonth: { // name of view
+      //     titleFormat: {
+      //       year: 'numeric', month: 'short',
+      //     }
+      //   },
+      // }
     }
   }
 }
