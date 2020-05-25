@@ -1440,6 +1440,18 @@ a.text-dark:hover, a.text-dark:focus {
     /* Never get larger than this */
     font-size: 15px !important;
   }
+  .demos__main {
+    padding: 15px;
+    margin: 10px !important;
+  }
+  /* width */
+  ::-webkit-scrollbar {
+    width: 3px;
+    height: 200px;
+    overflow: auto;
+    float: left;
+    margin: 0 10px;
+  }
 }
 
 /* Extra large devices (large desktops, 1200px and up) */
@@ -1451,20 +1463,30 @@ a.text-dark:hover, a.text-dark:focus {
   }
   /* width */
   ::-webkit-scrollbar {
-    width: 6px;
+    width: 4px;
+    height: 200px;
+    overflow: auto;
+    float: left;
+    margin: 0 10px;
   }
-  /* Track */
-  ::-webkit-scrollbar-track {
-    background: #f1f1f1;
-  }
-  /* Handle */
-  ::-webkit-scrollbar-thumb {
-    background: #888;
-  }
-  /* Handle on hover */
-  ::-webkit-scrollbar-thumb:hover {
-    background: #555;
-  }
+}
+
+/* Track */
+
+::-webkit-scrollbar-track {
+  background: white;
+}
+
+/* Handle */
+
+::-webkit-scrollbar-thumb {
+  background: #888;
+}
+
+/* Handle on hover */
+
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
 }
 
 .mat-progress-bar.mat-accent .mat-progress-bar-buffer {

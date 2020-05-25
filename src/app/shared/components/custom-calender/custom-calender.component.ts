@@ -62,6 +62,12 @@ export class CustomCalenderComponent implements OnInit {
         }
       },
     },
+    validRange: function (nowDate) {
+      return {
+        start: nowDate,
+        end: nowDate.clone().add(1, 'months')
+      };
+    },
     headerToolbar: {
       left: 'prev,next today',
       center: 'title',
