@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MatSnackBarService } from 'src/app/shared/services/mat-snack-bar.service';
-import { PushNotificationsService } from 'src/app/shared/services/push-notifications.service';
+
+import { PushNotificationService } from 'src/app/shared/services/push-notification.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -12,8 +13,9 @@ export class DashboardComponent implements OnInit {
   title: string = 'Hellow world';
 
   constructor(private matBarService: MatSnackBarService,
-    private _notificationService: PushNotificationsService) {
-    this._notificationService.requestPermission();
+    private _notificationService: PushNotificationService) {
+      _notificationService.requestPermission();
+   
   }
 
   ngOnInit() {

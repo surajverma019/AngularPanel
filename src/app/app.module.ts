@@ -14,8 +14,9 @@ import { RouterModule } from '@angular/router';
 import { HttpClient, HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { TokenInterceptor } from './shared/interceptors/token.interceptor';
 import { environment } from '../environments/environment';
-import { FontAwesomeModule } from '@fortawesome/angular-fontawesome'; 
-
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { PushNotificationService } from './shared/services/push-notification.service';
+import { ServiceWorkerModule } from '@angular/service-worker';
 
 @NgModule({
    declarations: [
@@ -29,11 +30,13 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
       SharedModule,
       HttpClientModule,
       RouterModule.forRoot(rootRouterConfig, { useHash: false }),
-      FontAwesomeModule
+      FontAwesomeModule,
+      ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
    ],
    providers: [
+      PushNotificationService,
       { provide: MAT_FORM_FIELD_DEFAULT_OPTIONS, useValue: { appearance: 'fill' } },
-      
+
       // REQUIRED IF YOU USE JWT AUTHENTICATION
       {
          provide: HTTP_INTERCEPTORS,

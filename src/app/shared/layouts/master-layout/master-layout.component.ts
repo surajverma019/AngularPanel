@@ -62,7 +62,9 @@ export class MasterLayoutComponent implements OnInit {
 
     //this.sidenav = sidenav;
     this.watcher = media.media$.subscribe((change: MediaChange) => {
-      if (change.mqAlias === 'sm' || change.mqAlias === 'xs') {
+      console.log('change.mqAlias');
+      console.log(change.mqAlias);
+      if (change.mqAlias === 'md' || change.mqAlias === 'sm' || change.mqAlias === 'xs') {
         this.opened = false;
         this.over = 'over';
       } else {
